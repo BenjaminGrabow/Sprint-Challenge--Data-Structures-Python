@@ -1,5 +1,7 @@
 import time
 
+from binary_search_tree import BinarySearchTree
+
 start_time = time.time()
 
 f = open('names_1.txt', 'r')
@@ -29,7 +31,7 @@ duplicates = []
 
 
 # ARRAY soloution
-duplicates = [name for name in names_1 if name in names_2] 
+# duplicates = [name for name in names_1 if name in names_2] 
 
 # Researched the *in* operator:
 
@@ -42,6 +44,18 @@ duplicates = [name for name in names_1 if name in names_2]
 
 # Worst is O(n) and the *in* operator is nested in our list comprehension(the list comprehension should be also O(n))
 # so the answer should be because it is nested O(n^2) but its way faster than our double loop so not sure here
+
+
+#Binary search tree solution:
+
+create_tree = BinarySearchTree(names_1[0])
+
+for name_1 in names_1:
+  create_tree.insert(name_1)
+
+for name_2 in names_2:
+  if create_tree.contains(name_2):
+    duplicates.append(name_2)                  # average runtime: 0.086 secs
 
 
 
